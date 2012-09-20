@@ -7,6 +7,14 @@
 #  Any blank lines or lines starting with a hash (#) are ignored.
 #  E.g. uncomment the next line to install sqlite3
 #sqlite3
+#  ***************************************************************************
+#
+#    Note: This file has been deprecated and exists for backward compatibility.
+#          Please use package.json to add dependencies to the Node modules
+#          your application requires.
+#
+#  ***************************************************************************
+#
 
 #
 #  For a list of globally installed modules - see file: npm_global_module_list.
