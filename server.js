@@ -42,28 +42,28 @@ var server = http.createServer(app).listen(port, ipaddr, function(){
 var io = require('socket.io').listen(server);
 
 // MongoDB
-mongoose.connect('mongodb://localhost:27017/test');
+//mongoose.connect('mongodb://localhost:27017/test');
 
-Schema = mongoose.Schema;
+//Schema = mongoose.Schema;
 
 // DB Schema  
-EBEventObj = new Schema({
-    title: String,
-    description: String,
-    organizer_name: String,
-    start_date: Date,
-    timezone: String,
-    logo: String,
-    url: String,
-    address: String,
-    coords: {long: Number, lat: Number}
-});
+//EBEventObj = new Schema({
+//    title: String,
+//    description: String,
+//    organizer_name: String,
+//    start_date: Date,
+//    timezone: String,
+//    logo: String,
+//    url: String,
+//    address: String,
+//    coords: {long: Number, lat: Number}
+//});
 
 //RatingObj.statics.findNearStatic = function(coords, cb) {
 //  this.find({coords: {$nearSphere: coords, $maxDistance: 5}}, cb);
 //}
 
-EBEvent = mongoose.model('EBEvent', EBEventObj);
+//EBEvent = mongoose.model('EBEvent', EBEventObj);
 
 app.get('/', index.display);
 //app.get('/api/reports', reports.list);
