@@ -6,7 +6,7 @@
   <head>
     
     <meta charset="utf-8">
-    <title>TopCop</title>
+    <title>BriteMap</title>
     <meta name="description" content="">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -22,8 +22,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="">
-
-
     <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
     <!--
     <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
@@ -49,74 +47,14 @@
   <body>
 
     <header>
-        <span><img id="header-logo" src="images/logo.png" alt=""></span>
-        <span id="report-button-wrap"><a href="#myModal" role="button" id="report-button" class="btn" data-toggle="modal" data-target="#myModal">Report</a></span>
-
     </header>
 
     <div id="wrapper">
       
-      <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Submit Report</h3>
-        </div>
-        
-        <div class="modal-body">
-            
-          <form name="submitRating" id="submitRating" method="POST" action="/form">
-            <label>Badge Number</label>
-            <input type="text" id="badge" name="badge">
-            <label>Rating</label>
-            <select id="rating" name="rating">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            </select>
-            <label>Comment</label>
-            <input id="comment" type="text" id="comment" name="comment">
-            </label>
-          </form>
-        
-        </div>
-        
-        <div class="modal-footer">
-          <button id='submit-button' class="btn btn-primary" data-dismiss="modal" onclick="window.submit_topcop_review();">Submit</button>
-        </div>
-      
-      </div> <!-- end .modal -->
-
-      
-
       <div id="main-content">
 
         <div id="pages">
 
-
-          <div id="reviews-page">
-            
-            <div id="text-logo-wrap">
-              <h1 id="text-logo">TOP COP</h1>
-            </div>
-            
-            <div id="list-wrap">
-            <div class="h-divider"></div>
-
-              <table class="table table-hover">
-                <thead>
-                  <tr><td>Badge #</td><td>Rating</td><td>Comments</td></tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div><!-- end #list-wrap -->
-            
-          </div> <!-- end #reviews-page -->
-        
-          
           <div id="map-page" class="current">
             
             <div id="map"></div>
@@ -129,12 +67,6 @@
 
     <footer>
       <ul id="tab-bar">
-        <li>
-          <a href="#reviews-page" class="btn-inverse">Reviews</a>
-        </li>
-        <li>
-          <a href="#map-page" class="btn-inverse active">Map</a>
-        </li>
       </ul>
     </footer>
 
@@ -144,15 +76,5 @@
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.0"></script>
     <script src="js/map.js"></script>
     <script src="js/scripts.js"></script>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-        // var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
-        // (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-        // g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
-        // s.parentNode.insertBefore(g,s)}(document,"script"));
-    </script>
-
   </body>
 </html>

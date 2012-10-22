@@ -1,26 +1,23 @@
 #!/bin/env node
-// Openshift environment hooks:
-
 // init dependencies:
 var debug = false;
-
 var express = require('express')
   , routes = require('./routes')
   , index = require('./routes/index')
+  , search = require('./routes/search')
   , path = require('path')
   , fs = require('fs')
-//  , reports = require('./routes/reports')
-//  , dashboard = require('./routes/dashboard')
-//  , form = require('./routes/form')
-//  , geo = require('./routes/geo')
   , mongoose = require('mongoose')
+// Openshift environment hooks:
 var ipaddr  = process.env.OPENSHIFT_INTERNAL_IP || "127.0.0.1";
 var port    = process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 8080;
 
 var app = express()
   , http = require('http');
+var Eventbrite = require('eventbrite');
 
 app.configure(function(){
+  app.set('eb_client', Eventbrite({'app_key':"5PQ3R4VMEOOSWJL7YM"}));
   app.set('port', port);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -66,8 +63,22 @@ var io = require('socket.io').listen(server);
 //EBEvent = mongoose.model('EBEvent', EBEventObj);
 
 app.get('/', index.display);
-//app.get('/api/reports', reports.list);
-//app.get('/dashboard', dashboard.display);
-//app.get('/form', form.form);
-//app.post('/form', form.submit);
-//app.post('/geo', geo.findNearby);
+app.get('/search/', function(req, res){
+  var eb_client = app.get('eb_client');
+  var params = {}; 
+  if(req.query.latitude){ params.latitude = req.query.latitude; }
+  if(req.query.longitude){ params.longitude = req.query.longitude; }
+  if(req.query.max){ params.max = req.query.max; }
+  if(req.query.within){ params.within = req.query.within; }
+  if(req.query.page){ params.page = req.query.page; }
+  if(req.query.count_only){ params.count_only = req.query.count_only; }
+  if(req.query.keywords){ params.keywords = req.query.keywords; }
+  return eb_client.event_search(params, function (err, events) {
+    console.log(JSON.stringify(events.events[0].summary));
+    if (!err) {
+      return res.json(events);
+    } else {
+      return console.log(err);
+    }   
+  }); 
+});
