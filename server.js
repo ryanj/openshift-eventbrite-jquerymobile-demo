@@ -83,7 +83,7 @@ app.get('/', index.display);
 //  console.log(body);
 //});
 //};
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(port, ipaddr, function(){
   console.log("Server running! (http://" + ipaddr + ":" + port + "/)" + Date(Date.now() ));
   //console.log("Express server listening on port " + app.get('port'));
 });
