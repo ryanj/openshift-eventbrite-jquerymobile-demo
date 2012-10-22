@@ -4,7 +4,6 @@ var debug = false;
 var express = require('express')
   , routes = require('./routes')
   , index = require('./routes/index')
-  , search = require('./routes/search')
   , path = require('path')
   , fs = require('fs')
   , mongoose = require('mongoose')
