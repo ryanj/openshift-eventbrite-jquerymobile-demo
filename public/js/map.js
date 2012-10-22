@@ -7,7 +7,7 @@ $(document).ready(function() {
   
   var map = new L.Map("map", {
       center: new L.LatLng(37.8052612, -122.2719463),
-      zoom: 12
+      zoom: 14
   });
   map.addLayer(layer);
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
   map.locate({setView: true, maxZoom: 12});
 
   function onLocationFound(e) {
-      var radius = e.accuracy / 2;
+      var radius = e.accuracy / 4;
 
       var uMarker = new L.Marker(e.latlng);
       map.addLayer(uMarker);
