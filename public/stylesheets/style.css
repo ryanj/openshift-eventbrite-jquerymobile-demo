@@ -1,0 +1,308 @@
+/*custom styles*/
+
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+
+html, body, #wrapper, #main-content, #pages {
+  height: 100%;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+header {
+  top:0; left:0;
+  height:45px;
+}
+
+footer {
+  bottom: 4px; 
+  left: 4px;
+  height:48px;
+  background: rgb(0,0,0,.25);
+  /*border-top:1px solid #eee;*/
+}
+
+header {
+  background: url(../images/denim.png) center center;
+  padding:0;
+  position:absolute;
+  z-index:2;
+  font-size:20px;
+  width:100%;
+  text-align:center;
+  color:#f3f3f3;
+  font-weight:bold;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+  line-height:45px;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+footer {
+  padding: 0;
+  position: absolute;
+  z-index: 2;
+  font-size: 20px;
+  width: 100%;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+}
+
+span#report-button-wrap {
+  position: absolute;
+  right: 6px;
+}
+
+a#report-button {
+  margin-bottom: 6px;
+  padding: 8px 14px;
+  background: url(../images/denim.png) center center;
+  /*background-color: #474747;*/
+  color: #222;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  text-shadow: 0px 1px 2px #777;
+  border: 1px solid #111;
+}
+
+#wrapper {
+  /*background: red;*/
+  /*position:static;*/
+  z-index:1;
+  width:100%;
+  overflow: hidden;
+}
+
+.modal {
+
+}
+
+#main-content {
+  position: absolute;
+  z-index:1;
+  width:100%;
+  padding:0;
+  bottom: 56px;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+#pages{
+  position:relative;
+}
+
+#pages > div {
+  display: none;
+}
+
+#pages > div.current {
+  display: block; 
+}
+
+#reviews-page {
+  background: url(../images/brillant.png) center center;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+div.h-divider {
+  width: 100%;
+  height: 1px;
+  /*background: red;*/
+  border-bottom: 1px solid #ffffff;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+#text-logo-wrap {
+  position: absolute;
+  top: 130px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#text-logo {
+  font-family: 'Bree Serif', serif;
+  font-size: 3em;
+  color: white;
+  text-shadow: 0 1px 6px rgba(0, 0, 0,.75);
+}
+
+#list-wrap {
+  margin: 185px auto;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  overflow: auto;
+  
+}
+
+td:first-child {
+  padding-left: 30px;
+}
+
+#map-page {
+
+}
+
+#map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
+/*
+ *  Footer UI
+ */ 
+
+
+#tab-bar{
+  right: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+#tab-bar li {
+  display: inline;
+  width: 50%;
+  float: left;
+}
+
+
+/*button styling borrowed from bootstrap*/
+#tab-bar a {
+  /*background: url(../images/gun_metal.png) center center;*/
+  background-color: #474747;
+  color: #222;
+  display: block;
+  font-weight: bold;
+  line-height: 48px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -webkit-touch-callout:none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  text-shadow: 0px 1px 2px #555;
+  cursor: pointer;
+}
+
+#tab-bar a:hover,
+#tab-bar a:active,
+#tab-bar a.active,
+#tab-bar a.disabled,
+#tab-bar a[disabled] {
+  background-color: #333;
+}
+
+#tab-bar a:hover {
+  /*background-color: red;*/
+  background-position: 0 -48px;
+  color: #555;
+  text-shadow: 0px 2px 3px #222;
+  -webkit-transition: background-position 0.05s linear;
+  -moz-transition: background-position 0.05s linear;
+  -ms-transition: background-position 0.05s linear;
+  -o-transition: background-position 0.05s linear;
+  transition: background-position 0.05s linear;
+}
+
+a.active {
+  background-color: #080808 \9;
+  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, .75);
+  -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, .75);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, .75);
+}
+
+.btn:hover {
+  color: #333333;
+  text-decoration: none;
+  background-color: #e6e6e6;
+  background-position: 0 -50px;
+  -webkit-transition: background-position 0.1s linear;
+  -moz-transition: background-position 0.1s linear;
+  -ms-transition: background-position 0.1s linear;
+  -o-transition: background-position 0.1s linear;
+  transition: background-position 0.1s linear;
+}
+
+
+#tab-bar a:first-child {
+  margin: 0 0px 0 4px;
+}
+
+#tab-bar a:last-child {
+  margin: 0 10px 0 0px;
+}
+
+
+/*
+ *  page transitions
+ */ 
+
+
+.in, .out {
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-duration: 400ms;
+}
+
+@-webkit-keyframes fade-in {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+.fade.in {
+  -webkit-animation-name: fade-in;
+  z-index: 5;
+}
+
+.fade.out {
+  z-index: 0;
+}
+
+
+/*
+ *  gps ring animation
+ */ 
+
+.gps_ring {
+    /*border: 3px solid #999;
+    -webkit-border-radius: 30px;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    left:20px;
+    top:214px;*/
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
+
+
+/*
+ *  leaflet overrides
+ */ 
+
+.leaflet-popup-content-wrapper {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.leaflet-top {
+  top:100px;
+}

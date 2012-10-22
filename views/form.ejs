@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="stylesheets/leaflet.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $("#submitRating").submit( function () {    
+                  $.post(
+                   'form',
+                    $(this).serialize(),
+                    function(data){
+                      $("#results").html(data)
+                    }
+                  );
+                  return false;   
+                });   
+            });
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form name="submitRating" id="submitRating" method="POST" action="/">
+    <legend>Submit a rating...</legend>
+    <label>Badge Number</label>
+    <input type="text" placeholder="Type something…" value="badge" id="badge">
+    <span class="help-block">Example block-level help text here.</span>
+    <label>Rating</label>
+    <select>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    </select>
+    <label>Comment</label>
+    <input type="text" placeholder="Type something…" value="">
+    <span class="help-block">Example block-level help text here.</span>
+
+    <label class="checkbox">
+    <input type="checkbox"> Include location
+    </label>
+    <button type="submit" class="btn">Submit</button>
+    </form>
+  </body>
+
+
+</html>

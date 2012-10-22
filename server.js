@@ -1,33 +1,116 @@
 #!/bin/env node
-//  OpenShift sample Node application
-var http = require('http');
-
-//Get the environment variables we need.
+// Openshift environment hooks:
 var ipaddr  = process.env.OPENSHIFT_INTERNAL_IP || "127.0.0.1";
 var port    = process.env.OPENSHIFT_INTERNAL_PORT || 8080;
 
-http.createServer(function (req, res) {
-	var addr = "unknown";
-	var out = "";
-	if (req.headers.hasOwnProperty('x-forwarded-for')) {
-		addr = req.headers['x-forwarded-for'];
-	} else if (req.headers.hasOwnProperty('remote-addr')){
-		addr = req.headers['remote-addr'];
-	}
+// init dependencies:
+var debug = false;
 
-	if (req.headers.hasOwnProperty('accept')) {
-		if (req.headers['accept'].toLowerCase() == "application/json") {
-			  res.writeHead(200, {'Content-Type': 'application/json'});
-			  res.end(JSON.stringify({'ip': addr}, null, 4) + "\n");			
-			  return ;
-		}
-	}
-	
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write("Welcome to Node.js on OpenShift!\n\n");
-  res.end("Your IP address seems to be this: " + addr + "\n");
-}).listen(port, ipaddr);
-console.log("Server running! (at http://" + ipaddr + ":" + port + "/)");
+var express = require('express')
+  , routes = require('./routes')
+  , index = require('./routes/index')
+//  , reports = require('./routes/reports')
+//  , dashboard = require('./routes/dashboard')
+//  , form = require('./routes/form')
+//  , geo = require('./routes/geo')
+  , path = require('path')
+//  , mongoose = require('mongoose')
+  , fs = require('fs')
+
+var app = express()
+  , http = require('http')
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server);
+
+// MongoDB
+// //mongoose.connect('mongodb://localhost:27017/test');
+//
+// //Schema = mongoose.Schema;
+//
+// // DB Schema  
+// //RatingObj = new Schema({
+// //    badge: String,
+// //    rating: String,
+// //    comment: String,
+// //    location: {},
+// //    coords: {long: Number, lat: Number}
+// //});
+//
+// //RatingObj.statics.findNearStatic = function(coords, cb) {
+// //  this.find({coords: {$nearSphere: coords, $maxDistance: 5}}, cb);
+// //}
+//
+// //Rating = mongoose.model('Rating', RatingObj);
+//
+
+app.configure(function(){
+  app.set('port', port || process.env.PORT || 8080);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(path.join(__dirname, 'public')));
+});
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
+});
+
+app.get('/', index.display);
+//app.get('/api/reports', reports.list);
+//app.get('/dashboard', dashboard.display);
+//app.get('/form', form.form);
+//app.post('/form', form.submit);
+//app.post('/geo', geo.findNearby);
+
+//if (debug) {
+//var request = require('request');
+//request.post({
+//  url: 'http://localhost:3000/form',
+//  headers: {
+//    'Content-Type': 'application/json'
+//  },
+//  body: JSON.stringify({
+//    badge: 419,
+//    rating: 5,
+//    comment: "Cop directed traffic at broken spotlight for 6 straight hours.",
+//    coords: {long: -122.2719461 , lat: 37.8052615}
+//  })
+//}, function(error, response, body){
+//  console.log(body);
+//});
+//};
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Server running! (http://" + ipaddr + ":" + port + "/)" + Date(Date.now() ));
+  //console.log("Express server listening on port " + app.get('port'));
+});
+
+//http.createServer(function (req, res) {
+//	var addr = "unknown";
+//	var out = "";
+//	if (req.headers.hasOwnProperty('x-forwarded-for')) {
+//		addr = req.headers['x-forwarded-for'];
+//	} else if (req.headers.hasOwnProperty('remote-addr')){
+//		addr = req.headers['remote-addr'];
+//	}
+//
+//	if (req.headers.hasOwnProperty('accept')) {
+//		if (req.headers['accept'].toLowerCase() == "application/json") {
+//			  res.writeHead(200, {'Content-Type': 'application/json'});
+//			  res.end(JSON.stringify({'ip': addr}, null, 4) + "\n");			
+//			  return ;
+//		}
+//	}
+//	
+//  res.writeHead(200, {'Content-Type': 'text/plain'});
+//  res.write("Welcome to Node.js on OpenShift!\n\n");
+//  res.end("Your IP address seems to be this: " + addr + "\n");
+//}).listen(port, ipaddr);
+//
+//
 //=======
 //
 //var express = require('express');
@@ -60,15 +143,6 @@ console.log("Server running! (at http://" + ipaddr + ":" + port + "/)");
 //app.get('/', function(req, res){
 //    res.send(zcache['index.html'], {'Content-Type': 'text/html'});
 //});
-//
-//
-////  Get the environment variables we need.
-//var ipaddr  = process.env.OPENSHIFT_INTERNAL_IP;
-//var port    = process.env.OPENSHIFT_INTERNAL_PORT || 8080;
-//
-//if (typeof ipaddr === "undefined") {
-//   console.warn('No OPENSHIFT_INTERNAL_IP environment variable');
-//}
 //
 ////  terminator === the termination handler.
 //function terminator(sig) {

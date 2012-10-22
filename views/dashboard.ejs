@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="stylesheets/leaflet.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <table class="table table-hover">
+    <thead>
+      <tr><td>Badge #</td><td>Rating</td><td>Comments</td></tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i<ratings.length; i++) {%>
+      <tr><td><%= ratings[i].badge %></td><td><%= ratings[i].rating %></td><td><%= ratings[i].comment %></td></tr>
+      <% } %>
+    </tbody>
+    </ul>
+  </body>
+</html>
