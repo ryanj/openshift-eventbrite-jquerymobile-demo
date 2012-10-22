@@ -1,7 +1,5 @@
 #!/bin/env node
 // Openshift environment hooks:
-var ipaddr  = process.env.OPENSHIFT_INTERNAL_IP || "127.0.0.1";
-var port    = process.env.OPENSHIFT_INTERNAL_PORT || 8080;
 
 // init dependencies:
 var debug = false;
@@ -42,9 +40,11 @@ var app = express()
 //
 // //Rating = mongoose.model('Rating', RatingObj);
 //
+var ipaddr  = process.env.OPENSHIFT_INTERNAL_IP || "127.0.0.1";
+var port    = process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 8080;
 
 app.configure(function(){
-  app.set('port', port || process.env.PORT || 8080);
+  app.set('port', port);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
