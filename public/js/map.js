@@ -5,7 +5,7 @@ $(document).ready(function() {
   
   var layer = new L.StamenTileLayer("toner");
   
-  var map = new L.Map("map", {
+  var map = new L.Map("searchmap", {
       center: new L.LatLng(37.8052612, -122.2719463),
       zoom: 14
   });
